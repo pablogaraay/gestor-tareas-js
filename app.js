@@ -30,7 +30,21 @@ function renderTasks() {
   taskList.textContent = ''; // Limpia la lista antes de renderizar
   tasks.forEach(task => {
     const taskItem = document.createElement('div');
-    taskItem.textContent = task.text;
+
+    const taskText = document.createElement('span');
+    taskText.textContent = task.text;
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    checkbox.addEventListener('change', () => {
+      task.completed = checkbox.checked;
+      console.log(tasks); // Muestra la tarea actualizada en la consola
+    });
+    
+    taskItem.appendChild(taskText);
+    taskItem.appendChild(checkbox);
+
     taskList.appendChild(taskItem);
   });
 }
